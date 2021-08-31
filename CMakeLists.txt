@@ -14,16 +14,14 @@ include(cmake/CPM.cmake)
 CPMAddPackage(
   NAME OpenSSL
   VERSION 1.1.1k
-  GITHUB_REPOSITORY janbar/openssl-cmake
-  GIT_TAG 1.1.1k-20210430
+  GITHUB_REPOSITORY Sarcasm/openssl-cmake
+  GIT_TAG a12caa43be2b3a3284dcab32497ce91ad78b1160
 )
 
-# FindOpenSSL.cmake export uppercase variable
-set(OPENSSL_FOUND ${OpenSSL_FOUND})
-
-# janbar/openssl-cmake doesn't provide these targets
-add_library(OpenSSL::SSL ALIAS ssl)
-add_library(OpenSSL::Crypto ALIAS crypto)
+if (OpenSSL_ADDED)
+  # FindOpenSSL.cmake export uppercase variable
+  set(OPENSSL_FOUND ${OpenSSL_FOUND})
+endif()
 
 CPMAddPackage(
   NAME CapnProto
